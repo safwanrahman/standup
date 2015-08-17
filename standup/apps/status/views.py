@@ -94,7 +94,7 @@ def user(slug):
     """The user page. Shows a user's statuses."""
     db = get_session(current_app)
 
-    user = db.query(User).filter_by(slug=slug).first()
+    user = db.query(User).filter_by(slug__iexact=slug).first()
     if not user:
         return page_not_found('User not found.')
     return render_template(
